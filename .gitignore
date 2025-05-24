@@ -1,0 +1,5 @@
+data/raw/*
+data/clean/*
+final/*/*
+!final/*/*.tex
+!final/*/*.pdf

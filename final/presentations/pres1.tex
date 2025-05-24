@@ -1,0 +1,149 @@
+\documentclass{beamer} %
+\usetheme{CambridgeUS}
+\setbeamertemplate{navigation symbols}{}
+\usepackage[latin1]{inputenc}
+\usefonttheme{professionalfonts}
+\usepackage{times}
+\usepackage{graphics}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{verbatim}
+\usepackage{booktabs}
+\usepackage{bm}
+\usepackage{tikz}
+\usepackage{hyperref}
+%\usepackage[style=windycity, autocite=inline]{biblatex}
+\usepackage[backend=biber, style=bwl-FU]{biblatex}
+\addbibresource{references.bib}
+
+\usetikzlibrary{shapes, positioning, arrows}
+
+\newcommand{\biblist}{\begin{list}{}
+{\listparindent 0.0cm \leftmargin 0.50cm \itemindent -0.50 cm
+\labelwidth 0 cm \labelsep 0.50 cm
+\usecounter{list}}\clubpenalty4000\widowpenalty4000}
+\newcommand{\ebiblist}{\end{list}}
+
+\newcounter{list}
+
+\renewcommand{\L}{\ensuremath{\mathcal{L}}}
+\providecommand{\bY}{\ensuremath{\mathbf{Y}}}
+\providecommand{\bX}{\ensuremath{\mathbf{X}}}
+\providecommand{\bV}{\ensuremath{\mathbf{V}}}
+\providecommand{\bK}{\ensuremath{\mathbf{K}}}
+\providecommand{\bmu}{\ensuremath{\mathbf{\mu}}}
+\providecommand{\bSigma}{\ensuremath{\mathbf{\Sigma}}}
+\providecommand{\bbeta}{\ensuremath{\boldsymbol{\beta}}}
+\providecommand{\beps}{\ensuremath{\boldsymbol{\varepsilon}}}
+
+\newcommand{\MAP}{{\text{MAP}}}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\suchthat}{such\; that}
+\newcommand{\Cov}{{\text{Cov}}}
+\newcommand{\Var}{{\text{Var}}}
+\newcommand{\logistic}{{\text{logistic}}}
+\newcommand{\logit}{{\text{logit}}}
+%\setbeamersize{text margin left=0.3mm,text margin right=0.1mm} 
+\renewcommand{\bf}[1]{\mathbf{#1}}
+
+\author{Caleb Leedy}
+
+\title[AI NRI]{Algorithms, Regularization, and Optimization}
+\date{May 28, 2025}
+
+\begin{document}
+
+\everymath{\displaystyle}
+\setbeamertemplate{title page}[default][colsep=-4bp,rounded=true]
+\setbeamertemplate{itemize items}[circle]
+\setbeamercolor{block title}{bg=red!50,fg=black}
+\frame{\titlepage}
+
+\begin{frame}{Overview}
+
+  \begin{itemize}
+    \item There was a lot of different material in the readings this week.
+    \item This presentation is supposed to help facilitate discussion and deepen understanding.
+    \item It is not meant to be a complete overview.
+    \item The course is very applied. I believe that this means that we need to
+      implement and extend most of the results to have understanding of the
+      topics.
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Outline}
+  \begin{itemize}
+    \item[1.] Algorithms (from a statistics point of view)
+    \item[2.] Regularization
+    \item[3.] Optimization
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Algorithms}
+  \begin{itemize}
+    \item Linear classifier
+    \item k Nearest Neighbor (kNN)
+  \end{itemize}
+\end{frame}
+
+% Linear classifier is logistic regression
+% kNN is hot deck imputation
+%   there are asymptotics for NN see kim and yang 2018?
+
+\begin{frame}{Title}
+  \begin{itemize}
+    \item
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Title}
+  \begin{itemize}
+    \item
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Title}
+  \begin{itemize}
+    \item
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Title}
+  \begin{itemize}
+    \item
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Title}
+  \begin{itemize}
+    \item
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Title}
+  \begin{itemize}
+    \item
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Title}
+  \begin{itemize}
+    \item
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Title}
+  \begin{itemize}
+    \item
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Title}
+  \begin{itemize}
+    \item
+  \end{itemize}
+\end{frame}
+
+\end{document}
