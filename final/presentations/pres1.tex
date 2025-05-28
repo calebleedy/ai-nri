@@ -10,6 +10,7 @@
 \usepackage{verbatim}
 \usepackage{booktabs}
 \usepackage{bm}
+\usepackage{minted}
 \usepackage{tikz}
 \usepackage{hyperref}
 %\usepackage[style=windycity, autocite=inline]{biblatex}
@@ -78,6 +79,7 @@
     \item[1.] Algorithms (from a statistics point of view)
     \item[2.] Regularization
     \item[3.] Optimization
+    \item[4.] Python on Nova
   \end{itemize}
 \end{frame}
 
@@ -92,58 +94,274 @@
 % kNN is hot deck imputation
 %   there are asymptotics for NN see kim and yang 2018?
 
-\begin{frame}{Title}
+\begin{frame}{Linear Classifier Algorithm}
+  \begin{minipage}{0.65\textwidth}
   \begin{itemize}
-    \item
+    \item Consider the setup of a linear classifier for a two-category problem.
+    \item The problem is to identify the class boundaries from the sample.
+    \item How would we descibe something similar in statistics?
+  \end{itemize}
+\end{minipage}
+\begin{minipage}{0.3\textwidth}
+  \includegraphics[width=3cm]{linearclass.png}
+\end{minipage}
+\end{frame}
+
+\begin{frame}{Linear Classifier Algorithm}
+  \begin{itemize}
+    \item We are already familiar with a similar algorithm from statistics: logistic regression.
+    \item For logistic regression, we assume an independent Bernoulli response model with the probability of being part of Class 1 denoted as $\pi_i(\bf{X})$, for covariates $\bf{X}$.
+    \item Then the loglikelihood function is:
+      $$
+      \ell(\bf{X}, y) = \sum_{i = 1}^n \left\{y_i \log \pi_i(\bf{X}_i) + (1 - y_i)\log(1 - \pi_i(\bf{X}_i))\right\}.
+      $$
+      where $y_i$ is an indicator if $i$ is part of Class 1 and $n$ is the sample size.
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Title}
+\begin{frame}{Linear Classifier Algorithm}
   \begin{itemize}
-    \item
+    \item This is generalized in the machine learning context to a Categorical distribution (instead of Bernoulli) to account for multiple classes.
+    \item The functional form of $\pi_i(\bf{X})$ can sometimes be changed to
+      address different forms of non-linearity.
+    \item Sometimes the word ``probabilities'' is used to describe the output of logistic function. There is no reference to an underlying statistical model, so we have to be careful about what these ``probabilities'' mean.
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Title}
+\begin{frame}{k Nearest Neighbor Algorithm}
   \begin{itemize}
-    \item
+    \item In this algorithm, you use a chosen distance function to find the closest element in the sample for prediction.
+    \item How would we describe this problem in statistics?
+    \item<2-> Hot-deck imputation!
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Title}
+\begin{frame}{k Nearest Neighbor Algorithm}
   \begin{itemize}
-    \item
+    \item There is a lot of literature about hot-deck imputation (See \cite{andridge2010review} for an early literature review). In particular we have,
+      \begin{itemize}
+        \item \cite{kim2004fractional} for variance estimation, and
+        \item \cite{yang2018integration} for a theoretical framework for kNN.
+      \end{itemize}
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Title}
+\begin{frame}
+  \begin{center}
+    {\Large Regularization}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Regularization}
+  \begin{minipage}{0.6\textwidth}
   \begin{itemize}
-    \item
+    \item Consider the following setup: $x_{i} \stackrel{iid}{\sim} N(0, 1)$,
+      $\varepsilon_i \sim N(0, 1)$ and $y_i = x_{1i} + \varepsilon_i$.
+    \item If $i = \{1, 2, 3, 4, 5, 6\}$, what is the best model to use?
+  \end{itemize}
+\end{minipage}
+\begin{minipage}{0.35\textwidth}
+  \includegraphics[width=4.2cm]{regex.png}
+\end{minipage}
+\end{frame}
+
+\begin{frame}{Regularization}
+  \begin{itemize}
+    \item With so many other covariates, we get a really good fit for our
+      sample, but a really bad predictor because we are using random noise to
+      try to predict random noise.
+    \item Regularization aims to find the signal within the noise.
+    \item It reduces "overfitting".
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Title}
+\begin{frame}{Regularization}
   \begin{itemize}
-    \item
+    \item From a statistics perspective, the L2 penalty is equivalent to ridge
+      regression (the MAP of a  Bayesian normal model for $Y$ with a normal prior for $\beta$.)
+    \item The L1 penalty is equivalent to the MAP of a Bayesian normal model for $Y$ with Laplace priors on $\beta$.
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Title}
+\begin{frame}
+  \begin{center}
+    {\Large Optimization}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Optimization}
   \begin{itemize}
-    \item
+    \item Optimization algorithms are procedures that minimize a (convex) loss
+      function.
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Title}
+\begin{frame}{Optimization}
   \begin{itemize}
-    \item
+    \item Gradient Descent
+    \item Newton's Method
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Title}
+\begin{frame}{Gradient Descent}
   \begin{itemize}
-    \item
+    \item The gradient descent algorithm to minimize a function $f(\bf{x})$ is defined to be the following:
+      \begin{itemize}
+        \item[1.] Choose an initial starting value $\bf x_0$ and step size $s$.
+        \item[2.] For $t = 1, 2, 3, \dots$, update the value with:
+          $$
+          \bf{x}_{t} = \bf{x}_{t-1} - s \nabla f(\bf{x})
+          $$
+        \item[3.] Stop according to some stopping criteria. (Typically $|f(x_t)
+          - f(x_{t-1})| < \varepsilon$ or $||x_t - x_{t-1}|| < \varepsilon$.)
+      \end{itemize}
   \end{itemize}
+\end{frame}
+
+\begin{frame}{Justification of Gradient Descent}
+  \begin{itemize}
+    \item Using a Taylor Expansion we can see that
+      $$
+      f(\bf x^*) \approx f(\bf x) + \nabla f(\bf x)^\top (\bf x^* - \bf x) + \frac{\nabla^2 f(\bf x)}{2} ||\bf x^* - \bf x||^2.
+      $$
+    \item If we set the Hessian $H(\bf x) = \nabla^2 f(\bf x) = s^{-1} I$ and notice that at the optimum $\nabla f(\bf x^*) = 0$, then we have
+      $$
+      \begin{aligned}
+        0 &= \nabla f(\bf x) + s^{-1} (\bf x^* - \bf x) \\
+        \Rightarrow \bf x^* &= \bf x - s \nabla f(\bf x).
+      \end{aligned}
+      $$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Gradient Descent}
+  \begin{itemize}
+    \item Choice of step size is important. If too small the algorithm will not
+      reach the solution. If too big, the algorithm will not converge.
+    \item In the last 15 years, there has been much research to determining a
+      good step size. The algorithms Adam, AdaGrad, and RMSProp, adjust the step
+      size for each iteration.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Newton's Method}
+  \begin{itemize}
+    \item Without the approximation of $\nabla^2 f(x) = s^{-1} I$, we get the
+      optimal solution to be
+      $$
+      \begin{aligned}
+        \bf x^* &= \bf x - H(\bf x)^{-1} \nabla f(\bf x).
+      \end{aligned}
+      $$
+    \item This is Newton's Method (or Newton-Raphson algorithm).
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Comparison between Gradient Descent and Newton's Method}
+  \begin{table}[ht!]
+    \centering
+    \begin{tabular}{rp{6cm}}
+      \toprule
+      Gradient Descent & Newton's Method\\
+      \midrule
+      Needs more iterations & Needs to start close enough to the solution \\
+      Only requires the gradient & Requires the gradient and Hessian\\
+      \bottomrule
+    \end{tabular}
+  \end{table}
+\end{frame}
+
+\begin{frame}
+  \begin{center}
+    {\Large Python on Nova}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Setting up the environment}
+  \begin{itemize}
+    \item[0.(a)] Start ISU VPN (if off campus). 
+    \item[0.(b)] \texttt{ssh} into Nova using the command line or PuTTY if this
+      is the first time using Nova.
+    \item[1.] Log into Nova OnDemand.
+    \item[2.] Start a Nova Desktop session. (Go to the Interactive Apps tab.)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[containsverbatim]{Setting up the environment}
+  \begin{itemize}
+    \item[3.] In the Nova Desktop interactive session, open the terminal
+      emulator via the Applications menu in the upper left corner and enter the
+      following commands.
+  \end{itemize}
+  \begin{minted}[fontsize=\scriptsize]{bash}
+
+# 1. Load the Python module
+module load python/3.11.9-i2aasxp
+
+# 2. Go to project directory
+cd /work/LAS/zhuz-lab/<USERNAME>/<DIRNAME>
+
+# 3. Create virtual environment 
+python3 -m venv venv
+
+# 4. Source virtual environment
+source venv/bin/activate
+\end{minted}
+\end{frame}
+
+\begin{frame}[containsverbatim]{Setting Up the Environment}
+  \begin{minted}[fontsize=\scriptsize]{bash}
+# 5. Install all needed packages AND ipykernel
+python -m pip install torch torchvision \ 
+  torchaudio --index-url https://download.pytorch.org/whl/cu118
+python3 -m pip install matplotlib
+python3 -m pip install ipykernel
+
+# 6. Create the kernel
+python3 -m ipykernel install --user --name "<KERNELNAME>"
+
+# 7. Deactivate virtual environment
+deactivate
+
+# 8. (Optional) Add soft link to home
+cd
+ln -s /work/LAS/zhuz-lab/<USERNAME>/<DIRNAME> <DIRNAME>
+\end{minted}
+\end{frame}
+
+\begin{frame}[containsverbatim]{Setting up Nova}
+  \begin{itemize}
+    \item[4.] Go back to Nova OnDemand and start a Jupyter Lab session. (Under the
+      Interactive Apps tab.)
+    \item[5.] Wait until the Connect to Jupyter button appears. Then click it.
+    \item[6.] When the Jupyter Lab launcher appears click the
+      \verb|KERNELNAME| notebook.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[containsverbatim]{Updating Nova}
+  \begin{itemize}
+    \item To add additional packages, use the following code in the Nova Desktop
+      terminal,
+  \end{itemize}
+\begin{minted}[fontsize=\scriptsize]{bash}
+  
+module load python/3.11.9-i2aasxp
+cd /work/LAS/zhuz-lab/<USERNAME>/<DIRNAME>
+source venv/bin/activate
+python3 -m pip install <PACKAGENAME>
+deactivate
+\end{minted}
+\end{frame}
+
+\begin{frame}
+  \begin{center}
+    {\Large Thank You!}
+  \end{center}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{References}
+\printbibliography
 \end{frame}
 
 \end{document}

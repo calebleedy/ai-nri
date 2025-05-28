@@ -32,5 +32,7 @@ Export.image.toDrive({
     scale:30,    
     description: "NLCD_MA_2016",
     maxPixels:1e13,                       
-    region:roi.geometry().bounds()      
+    region:roi.geometry().bounds(),
+    fileFormat: "GeoTIFF",
+    crs:"EPSG:2249"
   });
