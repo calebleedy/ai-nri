@@ -3,3 +3,4 @@ data/clean/*
 final/*/*
 !final/*/*.tex
 !final/*/*.pdf
+.ipynb_checkpoints/*
