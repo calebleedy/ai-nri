@@ -1,5 +1,6 @@
 data/raw/*
 data/clean/*
+data/.ipynb_checkpoints/*
 final/*/*
 !final/*/*.tex
 !final/*/*.pdf
